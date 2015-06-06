@@ -1,0 +1,2 @@
+class SuuntoException(Exception):
+    pass

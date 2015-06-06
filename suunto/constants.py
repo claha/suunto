@@ -1,0 +1,35 @@
+# Import
+from .duration import Time
+
+# Predefined times
+T10S = Time(s=10)
+T20S = Time(s=20)
+T30S = Time(s=30)
+T40S = Time(s=40)
+T50S = Time(s=50)
+T60S = Time(s=60)
+T70S = Time(s=70)
+T80S = Time(s=80)
+T90S = Time(s=90)
+
+T1M = Time(m=1)
+T2M = Time(m=2)
+T3M = Time(m=3)
+T4M = Time(m=4)
+T5M = Time(m=5)
+T6M = Time(m=6)
+T7M = Time(m=7)
+T8M = Time(m=8)
+T9M = Time(m=9)
+T10M = Time(m=10)
+T15M = Time(m=15)
+T20M = Time(m=20)
+T25M = Time(m=25)
+T30M = Time(m=30)
+T35M = Time(m=35)
+T40M = Time(m=40)
+T45M = Time(m=45)
+T50M = Time(m=50)
+T55M = Time(m=55)
+T60M = Time(m=60)
+

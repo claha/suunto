@@ -1,5 +1,5 @@
 # Import
-from .exceptions import SuuntoException
+from ..exceptions import SuuntoException
 
 # Time
 class Time(object):

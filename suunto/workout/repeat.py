@@ -9,6 +9,10 @@ class Repeat(object):
         for (name,duration) in zip(names,durations):
             self.steps.append(Step(name,duration))
         self.count = count
+        
+    def generateHeader(self,step):
+        return step.generateHeader()
+        # return '/* %s - %ss, STEP: %s */\n' % (name, duration.s, ','.join(map(str,range(step+i,step+i+N*count,N)))))
 
     def generateCode(self, file, step):
         count = self.count
@@ -16,14 +20,13 @@ class Repeat(object):
         for i in xrange(N):
             name = self.steps[i].name
             duration = self.steps[i].duration
-            file.write('/* %s - %ss, STEP: %s */\n' % (name, duration.s, ','.join(map(str,range(step+i,step+i+N*count,N)))))
-            if step == 0:
-                file.write('if (Suunto.mod(STEP,%d) == %d && STEP > %d && STEP < %d) {\n' % (N,(i+step%N) % N,step-1,step+N*count))
-            else:
-                file.write('else if (Suunto.mod(STEP,%d) == %d && STEP > %d && STEP < %d) {\n' % (N,(i+step%N) % N,step-1,step+N*count))
+            
+            file.write(self.generateHeader(self.steps[i]))
+            if step > 0:
+                file.write('else ')
+            file.write('if (Suunto.mod(STEP,%d) == %d && STEP > %d && STEP < %d) {\n' % (N,(i+step)%N,step-1,step+N*count))
             file.write('  prefix = "%s";\n' % (name))
-            file.write('  RESULT = %d - STEPTIME;\n' % (duration.s))
-            file.write('}\n')
-            file.write('\n')
+            file.write(duration.generateResult())
+            file.write('}\n\n')
 
         return step + N*count

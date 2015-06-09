@@ -1,7 +1,8 @@
 # Import
-from .exceptions import SuuntoException
+from ..exceptions import SuuntoException
 
 # Time
+# TODO: Time should inherit from a Duration-class
 class Time(object):
 
     def __init__(self, h=None, m=None, s=None):
@@ -30,3 +31,6 @@ class Time(object):
 
     def __rmul__(self,other):
         return self.__mul__(other)
+        
+    def generateResult(self):
+        return '  RESULT = %d - STEPTIME;\n' % (self.s)

@@ -1,7 +1,9 @@
 # Import
 from .duration import Time
+from .duration import Distance
 
 # Predefined times
+T5S = Time(s=5)
 T10S = Time(s=10)
 T20S = Time(s=20)
 T30S = Time(s=30)
@@ -33,3 +35,24 @@ T50M = Time(m=50)
 T55M = Time(m=55)
 T60M = Time(m=60)
 
+# Predefined distances
+D100M = Distance(m=100)
+D200M = Distance(m=200)
+D300M = Distance(m=300)
+D400M = Distance(m=400)
+D500M = Distance(m=500)
+D600M = Distance(m=600)
+D700M = Distance(m=700)
+D800M = Distance(m=800)
+D900M = Distance(m=900)
+
+D1KM = Distance(km=1)
+D2KM = Distance(km=2)
+D3KM = Distance(km=3)
+D4KM = Distance(km=4)
+D5KM = Distance(km=5)
+D6KM = Distance(km=6)
+D7KM = Distance(km=7)
+D8KM = Distance(km=8)
+D9KM = Distance(km=9)
+D10KM = Distance(km=10)

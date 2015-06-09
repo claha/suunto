@@ -30,27 +30,36 @@ class Workout(object):
             file.write(txt + '\n')
 
         # Generate
+        wr('/* Reset */')
         wr('if (SUUNTO_DURATION == 0) {')
         wr('  STEP = 0;')
         wr('  PREVSTEP = 0;')
         wr('  STEPSTARTTIME = 0;')
+        wr('  STEPSTARTDIST = 0;')
         wr('  STEPTIME = 0;')
+        wr('  STEPDIST = 0;')
         wr('}')
         wr('')
 
+        wr('/* Next step */')
         wr('if (STEP != PREVSTEP) {')
         wr('  Suunto.alarmBeep();')
         wr('  STEPSTARTTIME = SUUNTO_DURATION;')
+        wr('  STEPSTARTDIST = SUUNTO_DISTANCE*1000;')
         wr('}')
         wr('')
+        
+        wr('/* Update */')
         wr('PREVSTEP = STEP;')
         wr('STEPTIME = SUUNTO_DURATION - STEPSTARTTIME;')
+        wr('STEPDIST = SUUNTO_DISTANCE*1000 - STEPSTARTDIST;')
         wr('')
 
         step = 0
         for w in self.workout:
             step = w.generateCode(file,step)
 
+        wr('/* Check result */')
         wr('if ( RESULT <= 0 ) {')
         wr('  STEP = STEP + 1;')
         wr('  RESULT = 0;')
@@ -58,5 +67,5 @@ class Workout(object):
 
         # Close
         if not filename is None:
-            f.close()
+            file.close()
 

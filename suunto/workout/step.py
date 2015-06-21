@@ -14,7 +14,8 @@ class Step(object):
             file.write('else ')
         file.write('if (STEP == %d) {\n' % (step))
         file.write('  prefix = "%s";\n' % (self.name))
-        file.write(self.duration.generateResult())
+        file.write('  RESULT = %s;\n' % (self.duration.generateResult()))
+        file.write('  postfix = "%s";\n' % (self.duration.getUnit()))
         file.write('}\n\n')
 
         return step+1

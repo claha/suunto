@@ -26,7 +26,8 @@ class Repeat(object):
                 file.write('else ')
             file.write('if (Suunto.mod(STEP,%d) == %d && STEP > %d && STEP < %d) {\n' % (N,(i+step)%N,step-1,step+N*count))
             file.write('  prefix = "%s";\n' % (name))
-            file.write(duration.generateResult())
+            file.write('  RESULT = %s;\n' % (duration.generateResult()))
+            file.write('  postfix = "%s";\n' % (duration.getUnit()))
             file.write('}\n\n')
 
         return step + N*count

@@ -9,6 +9,7 @@ class Workout(object):
     def __init__(self):
         self.workout = []
         self.steps = []
+        self.postfixEnabled = True
 
     # TODO: check that len(name) <= 6
     def addStep(self, name, duration):
@@ -57,7 +58,7 @@ class Workout(object):
 
         step = 0
         for w in self.workout:
-            step = w.generateCode(file,step)
+            step = w.generateCode(file,step,self.postfixEnabled)
 
         wr('/* Check result */')
         wr('if ( RESULT <= 0 ) {')

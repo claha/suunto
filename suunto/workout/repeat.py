@@ -14,7 +14,7 @@ class Repeat(object):
         return step.generateHeader()
         # return '/* %s - %ss, STEP: %s */\n' % (name, duration.s, ','.join(map(str,range(step+i,step+i+N*count,N)))))
 
-    def generateCode(self, file, step):
+    def generateCode(self, file, step, postfixEnabled):
         count = self.count
         N = len(self.steps)
         for i in xrange(N):
@@ -27,7 +27,8 @@ class Repeat(object):
             file.write('if (Suunto.mod(STEP,%d) == %d && STEP > %d && STEP < %d) {\n' % (N,(i+step)%N,step-1,step+N*count))
             file.write('  prefix = "%s";\n' % (name))
             file.write('  RESULT = %s;\n' % (duration.generateResult()))
-            file.write('  postfix = "%s";\n' % (duration.getUnit()))
+            if postfixEnabled:
+                file.write('  postfix = "%s";\n' % (duration.getUnit()))
             file.write('}\n\n')
 
         return step + N*count
